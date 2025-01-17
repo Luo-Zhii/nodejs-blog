@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-f8",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --no-warnings --inspect --watch index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luo-Zhii/nodejs-blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Luo-Zhii/nodejs-blog/issues"
+  },
+  "homepage": "https://github.com/Luo-Zhii/nodejs-blog#readme",
+  "description": "",
+  "dependencies": {
+    "chokidar": "^4.0.3",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
