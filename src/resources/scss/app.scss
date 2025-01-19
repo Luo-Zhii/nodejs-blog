@@ -1,0 +1,11 @@
+@use "variables" as var;
+h1 {
+  color: var.$red-color;
+  &:hover {
+    color: blue;
+    cursor: pointer;
+  }
+}
+.container {
+  color: green;
+}
