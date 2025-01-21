@@ -4,6 +4,10 @@ const handlebars = require("express-handlebars").engine;
 const path = require("path");
 const app = express();
 const route = require("./routes/index");
+const db = require("./config/db");
+
+// Connect to db
+db.connect();
 
 //Image
 app.use(express.static(path.join(__dirname, "../public")));
