@@ -9,15 +9,14 @@ const db = require("./config/db");
 // Connect to db
 db.connect();
 
-//Image
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
   express.urlencoded({
     extended: true,
   })
 );
-
+// convert json
 app.use(express.json());
 
 // HTTP logger
