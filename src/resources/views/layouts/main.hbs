@@ -4,9 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../../../src/public/css/app.css">
+        <style>
+            /* Thanh cuộn */
+            html *::-webkit-scrollbar {
+                border-radius: 0;
+                width: 8px;
+                /* Chiều rộng thanh cuộn */
+            }
+        
+            html *::-webkit-scrollbar-thumb {
+                border-radius: 4px;
+                /* Bo góc thanh cuộn */
+                background-color: rgba(0, 0, 0, 0.15);
+                /* Màu thanh cuộn */
+            }
+        
+            html *::-webkit-scrollbar-track {
+                border-radius: 0;
+                background-color: rgba(0, 0, 0, 0);
+                /* Màu nền của phần thanh cuộn */
+            }
+        </style>
 </head>
+
 <body>
     <header>
         {{> header}}
@@ -20,5 +41,6 @@
         {{> footer}}
     </footer>
 
+    <script src="https://cdn.tailwindcss.com"></script>
 </body>
 </html>

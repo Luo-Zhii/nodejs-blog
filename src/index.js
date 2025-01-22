@@ -6,19 +6,23 @@ const app = express();
 const route = require("./routes/index");
 const db = require("./config/db");
 
+console.log("====================================");
+console.log(path.join(__dirname, "\\public"));
+console.log("====================================");
+
 // Connect to db
 db.connect();
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "\\public")));
+
+// convert json
+app.use(express.json());
 
 app.use(
   express.urlencoded({
     extended: true,
   })
 );
-
-// convert json
-app.use(express.json());
 
 // HTTP logger
 app.use(morgan("tiny"));

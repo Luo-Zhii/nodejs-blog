@@ -1,19 +1,33 @@
-<div class="mt-4">
-    <div class="flex">
-        <div class="w-full lg:w-1/4">
-            <button>Học ngay</button>
-            <ul>
-                <li>{{courses.level}}</li>
+
+<div class="flex">
+    
+    <aside id="default-sidebar"
+        class="top-16 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        aria-label="Sidebar">
+        <div class="w-64 h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+            <ul class="space-y-2 font-medium">
+                <img class="rounded-t-lg" src={{ courses.thumbnail }} alt={{courses.name}} />
+                <button type="button"
+                    class="w-full text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Học ngay</button>
+                
+                <li>
+                    <div
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-whitegroup">
+                        <span class="flex-1 ms-3 whitespace-nowrap text-center">{{courses.level}}</span>
+                    </div>
+                </li>
             </ul>
         </div>
-        <div class="w-full lg:w-3/4">
-            <h2>{{courses.name}}</h2>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{courses.videoID}}"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-            </iframe>
-            <p>{{courses.description}}</p>
-        </div>
+    </aside>
+    
+    <div class="p-4">
+        <span class="text-xl font-bold ">{{courses.name}}</span>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{courses.videoID}}"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+        <span class="text-lg font-medium">{{courses.description}}</span>
     </div>
+    
 </div>
