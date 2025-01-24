@@ -1,41 +1,41 @@
 
 <div class="mt-8 mx-4">
-    <div class="text-xl font-semibold">Upload Courses</div>
-    <form method="POST" action="/courses/store">
+    <div class="text-xl font-semibold">Edit Courses</div>
+    <form method="POST" action="/courses/{{course._id}}?_method=PUT">
             <div>
                 <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                <input type="text" id="name" name="name"
+                <input type="text" id="name" value="{{course.name }}" name="name" 
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Enter Name Courses..."  />
             </div>
             <div>
                 <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                <input type="text" id="description" name="description"
+                <textarea  id="description" name="description"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Enter Description..." required />
+                    placeholder="Enter Description..." required >{{course.description }}</textarea> 
             </div>
             <div>
                 <label for="thumbnail" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Thumbnail</label>
-                <input type="text" id="thumbnail" name="thumbnail"
+                <input type="text" id="thumbnail" value="{{course.thumbnail }}" name="thumbnail"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Enter thumbnail..." required />
             </div>
             <div>
                 <label for="video_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">VideoID</label>
-                <input type="text" id="video_id" name="videoID"
+                <input type="text" id="video_id" value="{{course.videoID }}" name="videoID"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Enter VideoID..." required />
             </div>
             <div>
                 <label for="level" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Level</label>
-                <input type="text" id="level" name="level"
+                <input type="text" id="level" value="{{course.level }}" name="level"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Enter Level..." required />
             </div>
             <div>
                 <label for="slug" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Slug
                     </label>
-                <input type="text" id="slug" name="slug"
+                <input type="text" id="slug" value="{{course.slug }}" name="slug"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Enter Slug..." required />
             </div>

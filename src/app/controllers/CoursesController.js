@@ -5,8 +5,8 @@ class CoursesController {
   // [GET] /courses/:slug
   show(req, res, next) {
     Courses.findOne({ slug: req.params.slug })
-      .then((courses) =>
-        res.render("courses/show", { courses: mongooseToObject(courses) })
+      .then((course) =>
+        res.render("courses/show", { course: mongooseToObject(course) })
       )
       .catch(next);
   }
@@ -23,6 +23,20 @@ class CoursesController {
     } catch (error) {
       next(error);
     }
+  }
+
+  // [GET] /courses/:id/edit
+  edit(reg, res, next) {
+    Courses.findById(reg.params.id).then((course) =>
+      res.render("courses/edit", { course: mongooseToObject(course) })
+    );
+  }
+
+  // [PUT] /courses/:id
+  update(reg, res, next) {
+    Courses.updateOne({ _id: reg.params.id }, reg.body)
+      .then(() => res.redirect("/me/stored/courses"))
+      .catch(next);
   }
 }
 
