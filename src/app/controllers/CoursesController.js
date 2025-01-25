@@ -38,6 +38,13 @@ class CoursesController {
       .then(() => res.redirect("/me/stored/courses"))
       .catch(next);
   }
+
+  // [DELETE] /courses/:id/
+  destroy(reg, res, next) {
+    Courses.deleteOne({ _id: reg.params.id })
+      .then(() => res.redirect("back"))
+      .catch(next);
+  }
 }
 
 module.exports = new CoursesController();
