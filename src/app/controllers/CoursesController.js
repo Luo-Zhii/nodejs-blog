@@ -19,7 +19,7 @@ class CoursesController {
     try {
       const course = new Courses(req.body);
       console.log("Course instance:", course);
-      await course.save().then(() => res.redirect("/"));
+      await course.save().then(() => res.redirect("me/stored/courses"));
     } catch (error) {
       next(error);
     }
@@ -41,7 +41,19 @@ class CoursesController {
 
   // [DELETE] /courses/:id/
   destroy(reg, res, next) {
+    Courses.delete({ _id: reg.params.id })
+      .then(() => res.redirect("back"))
+      .catch(next);
+  }
+  // [DELETE] /courses/:id/forceDestroy
+  forceDestroy(reg, res, next) {
     Courses.deleteOne({ _id: reg.params.id })
+      .then(() => res.redirect("back"))
+      .catch(next);
+  }
+  // [PATCH] /courses/:id/restore
+  restore(req, res, next) {
+    Courses.restore({ _id: req.params.id })
       .then(() => res.redirect("back"))
       .catch(next);
   }

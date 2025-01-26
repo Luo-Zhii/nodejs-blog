@@ -7,10 +7,6 @@ const methodOverride = require("method-override");
 const route = require("./routes/index");
 const db = require("./config/db");
 
-console.log("====================================");
-console.log(path.join(__dirname, "\\public"));
-console.log("====================================");
-
 // Connect to db
 db.connect();
 
