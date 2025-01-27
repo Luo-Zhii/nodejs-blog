@@ -1,83 +1,115 @@
-
-
-<div class="mt-8 mx-4">
-    <div class="text-xl font-semibold">My Courses</div>
-    <a href="/me/trashed/courses"  class="block   font-semibold  text-blue-500 hover:translate-x-1 duration-300 decoration-sky-500"><i class="fa-solid fa-trash-can"></i> <span class="font-bold text-black">{{deletedCount }}</span> Recycle Bin <i class="fa-solid fa-arrow-right"></i></a>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="p-4">
-                        <div class="flex items-center">
-                            <div class="flex items-center font-bold text-gray-900 whitespace-nowrap dark:text-white">
-                            Index
+<form name="container-form" method="POST" action="/courses/handle-form-actions">
+    <div class="mt-8 mx-6">
+            <div class="text-xl font-semibold">My Courses</div>
+            <a href="/me/trashed/courses"  class="block font-semibold text-blue-500 hover:translate-x-1 duration-300 decoration-sky-500"><i class="fa-solid fa-trash-can"></i> <span class="font-bold     text-black">{{deletedCount }}</span> Recycle Bin <i class="fa-solid fa-arrow-right"></i></a>
+                <div class="inline-flex items-center my-4">
+                    <input id="checkbox-all" type="checkbox" value=""
+                        class="group-checkbox-all  w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="checkbox-all" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Select All</label>
+                    
+                        <select name="action"
+                            class="bg-gray-50 border mx-8 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <option value="" selected>-- Choose action --</option>
+                            <option value="delete">Delete</option>
+                        </select>
+                    
+                <button
+                    class="check-all-submit-btn  text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled
+                    >
+                    Submit
+                </button>
+    
+                </div>
+            
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="p-4">
+                                <div class="flex items-center">
+                                    <input id="checkbox-all-courses" type="checkbox"
+                                        class="group-checkbox-all w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="checkbox-all-courses" class="sr-only">checkbox</label>
                             </div>
-                        </div>
-                    </th>
-
-                    <th scope="col" class="px-6 py-3">
-                        Thumbnail
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Courses Name
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Description
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Level
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Created
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Action
-                    </th>
-                </tr>
-            </thead>
-            <tbody> 
-            {{#each courses}}
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="w-4 p-4">
-                            <div class="flex items-center font-bold text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ sum @index 1}}</div>
-                        </td>
-                        <th scope="row" class="px-6 py-4">
-                            <img class="h-20 w-25" src="{{this.thumbnail }}" alt="image description">
                         </th>
-                        <td class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{ this.name }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ this.description }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ this.level }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ this.createdAt }}
-                        </td>
-                        
-                        <td class="flex items-center px-6 py-12">
-                            <a href="/courses/{{ this._id }}/edit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            <a data-modal-id="{{this._id }}" data-modal-target="delete-course-modal" data-modal-toggle="delete-course-modal" class="cursor-pointer font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
+                        <th scope="col" class="p-4">
+                            <div class="flex items-center">
+                                <div class="flex items-center font-bold text-gray-900 whitespace-nowrap dark:text-white">
+                                Index
+                                </div>
+                            </div>
+                        </th>
+    
+                        <th scope="col" class="px-6 py-3">
+                            Thumbnail
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Courses Name
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Description
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Level
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Created
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                </div>
+                <tbody> 
+                {{#each courses}}
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="w-4 p-4">
+                                <div class="flex items-center">
+                                    <input id="child-checkbox-table-courses" type="checkbox"
+                                        value="{{this._id}}" name="courseIds[]"
+                                        class="w-4 h-4 text-blue-600  bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="child-checkbox-table-courses" class="sr-only">checkbox</label>
+                                </div>
+                            </td>
+                            <td class="w-4 p-4">
+                                <div class="flex items-center font-bold text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ sum @index 1}}</div>
+                            </td>
+                            <th scope="row" class="px-6 py-4">
+                                <img class="h-20 w-25" src="{{this.thumbnail }}" alt="image description">
+                            </th>
+                            <td class="px-6 py-4  font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{ this.name }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ this.description }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ this.level }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ this.createdAt }}
+                            </td>
+                            
+                            <td class="flex items-center px-6 py-12">
+                                <a href="/courses/{{ this._id }}/edit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <a data-modal-id="{{this._id }}" data-modal-target="delete-course-modal" data-modal-toggle="delete-course-modal" class="cursor-pointer font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
+                            </td>
+                        </tr>
+                    {{else}}
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            You haven't posts any course. Do you want <a href="/courses/create" class="font-semibold  text-blue-500">upload courses ?</a>
                         </td>
                     </tr>
-                {{else}}
-                <tr>
-                    <td colspan="7" class="text-center">
-                        You haven't posts any course. Do you want <a href="/courses/create" class="font-semibold  text-blue-500">upload courses ?</a>
-                    </td>
-                </tr>
-                {{/each }}
-
-                
-            </tbody>
-        </table>
+                    {{/each }}  
+                </tbody>
+            </table>
     </div>
-</div>
-
+</form>
 <div id="delete-course-modal" tabindex="-1" class="overflow-y-auto overflow-x-hidden hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full " >
     <div class="relative p-4 w-full max-w-md max-h-full">
         <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
@@ -154,8 +186,38 @@
             deleteForm.action = '/courses/' + modalId +  '?_method=DELETE';
             deleteForm.submit()
         }
-        
 </script>
 
 
+{{!-- Checkbox all button --}}
+
+<script>
+    var checkBoxAll = $('.group-checkbox-all')
+    var courseItemCheckbox = $('input[name="courseIds[]"]')
+    var checkAllSubmitBtn = $('.check-all-submit-btn')
+    
+    var containerForm = document.forms['container-form']
+
+    // CheckboxAll clicked
+    checkBoxAll.change(function() {
+        var isCheckedAll = $(this).prop('checked'); 
+        courseItemCheckbox.prop('checked', isCheckedAll)
+        checkBoxAll.prop('checked', isCheckedAll)
+        renderCheckAllSubmitBtn()
+    })
+
+    // Course item checkbox change
+    courseItemCheckbox.change(function() {
+        var isCheckedAll = courseItemCheckbox.length === $('input[name="courseIds[]"]:checked').length
+        checkBoxAll.prop('checked', isCheckedAll)
+        renderCheckAllSubmitBtn()
+    })
+
+    // Render disabled button
+    function renderCheckAllSubmitBtn() {
+        var checkedCount =  $('input[name="courseIds[]"]:checked').length
+        checkAllSubmitBtn.prop('disabled', checkedCount === 0 )
+    }
+
+</script>
 
