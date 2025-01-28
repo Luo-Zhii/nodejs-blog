@@ -7,10 +7,12 @@ const methodOverride = require("method-override");
 const route = require("./routes/index");
 const db = require("./config/db");
 
+
+
 // Connect to db
 db.connect();
 
-app.use(express.static(path.join(__dirname, "\\public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // convert json
 app.use(express.json());
@@ -38,9 +40,10 @@ app.engine(
   })
 );
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "\\resources\\views"));
+app.set("views", path.join(__dirname, "resources", "views"));
 
 // Routes
 route(app);
+
 
 app.listen(3000);
