@@ -7,8 +7,6 @@ const methodOverride = require("method-override");
 const route = require("./routes/index");
 const db = require("./config/db");
 
-
-
 // Connect to db
 db.connect();
 
@@ -44,6 +42,5 @@ app.set("views", path.join(__dirname, "resources", "views"));
 
 // Routes
 route(app);
-
 
 app.listen(3000);
