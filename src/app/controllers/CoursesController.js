@@ -1,10 +1,14 @@
 const Courses = require('../../app/models/Courses')
-const { mongooseToObject } = require('../../utils/mongoose')
+const {
+    mongooseToObject
+} = require('../../utils/mongoose')
 
 class CoursesController {
     // [GET] /courses/:slug
     show(req, res, next) {
-        Courses.findOne({ slug: req.params.slug })
+        Courses.findOne({
+                slug: req.params.slug
+            })
             .then(course =>
                 res.render('courses/show', {
                     course: mongooseToObject(course),
@@ -16,6 +20,7 @@ class CoursesController {
     create(reg, res, next) {
         res.render('courses/create')
     }
+    
     // [POST] /courses/store
     async store(req, res, next) {
         try {
@@ -30,32 +35,42 @@ class CoursesController {
     // [GET] /courses/:id/edit
     edit(reg, res, next) {
         Courses.findById(reg.params.id).then(course =>
-            res.render('courses/edit', { course: mongooseToObject(course) }),
+            res.render('courses/edit', {
+                course: mongooseToObject(course)
+            }),
         )
     }
 
     // [PUT] /courses/:id
     update(reg, res, next) {
-        Courses.updateOne({ _id: reg.params.id }, reg.body)
+        Courses.updateOne({
+                _id: reg.params.id
+            }, reg.body)
             .then(() => res.redirect('/me/stored/courses'))
             .catch(next)
     }
 
     // [DELETE] /courses/:id/
     destroy(reg, res, next) {
-        Courses.delete({ _id: reg.params.id })
+        Courses.delete({
+                _id: reg.params.id
+            })
             .then(() => res.redirect('back'))
             .catch(next)
     }
     // [DELETE] /courses/:id/forceDestroy
     forceDestroy(reg, res, next) {
-        Courses.deleteOne({ _id: reg.params.id })
+        Courses.deleteOne({
+                _id: reg.params.id
+            })
             .then(() => res.redirect('back'))
             .catch(next)
     }
     // [PATCH] /courses/:id/restore
     restore(req, res, next) {
-        Courses.restore({ _id: req.params.id })
+        Courses.restore({
+                _id: req.params.id
+            })
             .then(() => res.redirect('back'))
             .catch(next)
     }
@@ -64,22 +79,36 @@ class CoursesController {
     handleFormActions(req, res, next) {
         switch (req.body.action) {
             case 'delete':
-                Courses.delete({ _id: { $in: req.body.courseIds } })
+                Courses.delete({
+                        _id: {
+                            $in: req.body.courseIds
+                        }
+                    })
                     .then(() => res.redirect('back'))
                     .catch(next)
                 break
             case 'restore':
-                Courses.restore({ _id: { $in: req.body.courseIds } })
+                Courses.restore({
+                        _id: {
+                            $in: req.body.courseIds
+                        }
+                    })
                     .then(() => res.redirect('back'))
                     .catch(next)
                 break
             case 'destroy':
-              Courses.deleteMany({ _id: { $in: req.body.courseIds } })
-              .then(() => res.redirect('back'))
-              .catch(next)
+                Courses.deleteMany({
+                        _id: {
+                            $in: req.body.courseIds
+                        }
+                    })
+                    .then(() => res.redirect('back'))
+                    .catch(next)
                 break
             default:
-                res.json({ message: 'Action is invalid!!! ' })
+                res.json({
+                    message: 'Action is invalid!!! '
+                })
         }
     }
 }
