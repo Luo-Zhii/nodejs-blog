@@ -26,7 +26,7 @@ class CoursesController {
         try {
             const course = new Courses(req.body)
             console.log('Course instance:', course)
-            await course.save().then(() => res.redirect('me/stored/courses'))
+            await course.save().then(() => res.redirect('/me/stored/courses'))
         } catch (error) {
             next(error)
         }

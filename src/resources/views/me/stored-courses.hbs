@@ -37,6 +37,7 @@
                             <div class="flex items-center">
                                 <div class="flex items-center font-bold text-gray-900 whitespace-nowrap dark:text-white">
                                 Index
+                                {{{sortable '_id' _sort}}}
                                 </div>
                             </div>
                         </th>
@@ -78,7 +79,7 @@
                             </td>
                             <td class="w-4 p-4">
                                 <div class="flex items-center font-bold text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ sum @index 1}}</div>
+                                    {{ this._id}}</div>
                             </td>
                             <th scope="row" class="px-6 py-4">
                                 <img class="h-20 w-25" src="{{this.thumbnail }}" alt="image description">
